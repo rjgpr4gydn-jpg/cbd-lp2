@@ -1,35 +1,37 @@
 // ============================
 // ここだけ編集すれば商品差し替えOK
 // ============================
-const PRODUCTS = [
-  {
-    name: "CBDリキッド（仮）Sativa / Citrus",
-    priceJPY: null, // 未定なら null
-    cbdMg: 300,
-    volumeMl: 1.0,
-    tags: ["フレーバー：シトラス", "濃度：後で設定", "限定：未定"],
-    note: "発売日・在庫・詳細は準備中。後で差し替え可能。",
-    buyUrl: "#contact"
-  },
-  {
-    name: "CBDリキッド（仮）Hybrid / Berry",
-    priceJPY: 9800,
-    cbdMg: 500,
-    volumeMl: 1.0,
-    tags: ["フレーバー：ベリー", "吸い心地：マイルド", "第三者検査：予定"],
-    note: "説明文をここに。効能ではなく特徴（香り/原料/検査など）を書くのが無難。",
-    buyUrl: "#contact"
-  },
-  {
-    name: "CBDリキッド（仮）Indica / Mint",
-    priceJPY: 6500,
-    cbdMg: 300,
-    volumeMl: 0.8,
-    tags: ["フレーバー：ミント", "持ち運び：軽量", "初心者向け：未定"],
-    note: "商品詳細・価格・写真は後から差し替え。",
-    buyUrl: "#contact"
-  }
-];
+const INSTAGRAM_URL = "https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==";
+
+const PRODUCTS = Array.from({ length: 15 }, (_, i) => {
+  const n = String(i + 1).padStart(2, "0");
+  const flavorList = [
+    "Citrus", "Berry", "Mint", "Grape", "Mango",
+    "Peach", "Cola", "Apple", "Lemon", "Pine",
+    "Vanilla", "Coffee", "Melon", "Lychee", "Tropical"
+  ];
+  const flavor = flavorList[i] || "Flavor";
+
+  // 2枚の画像を交互に使う
+  const img = (i % 2 === 0)
+    ? "assets/S__17571846_0.jpg"
+    : "assets/S__17571844_0.jpg";
+
+  return {
+    name: `CBDリキッド（仮）${n} / ${flavor}`,
+    priceJPY: 9900,           // 9900円統一（仮）
+    cbdMg: null,              // 未定なら null（表示しない）
+    volumeMl: 1.0,            // 仮
+    image: img,               // 商品画像
+    tags: [
+      `フレーバー：${flavor}`,
+      "成分：準備中",
+      "検査：準備中"
+    ],
+    note: "※商品詳細・成分・検査情報・在庫は準備中（後で差し替え）",
+    buyUrl: INSTAGRAM_URL
+  };
+});
 
 // ============================
 // 表示ロジック（触らなくてOK）
@@ -50,26 +52,38 @@ function renderProducts(){
   if (!grid) return;
 
   grid.innerHTML = PRODUCTS.map((p) => {
-    const meta = [
-      (p.volumeMl ? `${p.volumeMl}ml` : null),
-      (p.cbdMg ? `CBD ${p.cbdMg}mg（表記は後で調整）` : null),
-    ].filter(Boolean).join(" / ");
+    const metaParts = [];
+    if (p.volumeMl) metaParts.push(`${p.volumeMl}ml`);
+    if (p.cbdMg) metaParts.push(`CBD ${p.cbdMg}mg`);
+    const meta = metaParts.join(" / ");
 
     const tags = (p.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join("");
 
+    const bgStyle = p.image
+      ? `style="background-image:url('${encodeURI(p.image)}')"`
+      : "";
+
     return `
       <article class="pcard">
-        <div class="pcard__img" aria-hidden="true"></div>
+        <div class="pcard__img" ${bgStyle} aria-hidden="true"></div>
         <div class="pcard__body">
           <div class="pcard__top">
             <div class="pcard__name">${escapeHtml(p.name)}</div>
             <div class="pcard__price">${formatJPY(p.priceJPY)}</div>
           </div>
-          <div class="pcard__meta">${escapeHtml(meta)}</div>
+
+          ${meta ? `<div class="pcard__meta">${escapeHtml(meta)}</div>` : ""}
+
           <div class="pcard__tags">${tags}</div>
+
           <div class="pcard__meta">${escapeHtml(p.note || "")}</div>
+
           <div class="pcard__actions">
-            <a class="btn btn--primary" href="${p.buyUrl || "#contact"}">購入/相談する</a>
+            <a class="btn btn--primary"
+               href="${p.buyUrl || "#contact"}"
+               target="_blank" rel="noopener">
+              Instagramで相談する
+            </a>
             <a class="btn btn--ghost" href="#quality">品質を見る</a>
           </div>
         </div>
