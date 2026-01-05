@@ -3,232 +3,146 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="color-scheme" content="dark light" />
-
-  <title>YUU.K｜CBDリキッド（仮）</title>
-  <meta name="description" content="YUU.K（仮）CBDリキッドのメインページ。商品・価格・成分・検査情報は準備中（後で差し替え可能）。" />
-
+  <title>YUU.K｜CBDリキッド</title>
+  <meta name="description" content="YUU.K（仮）CBDリキッドのメインページ。商品・成分・価格は後から差し替え可能。" />
   <link rel="stylesheet" href="styles.css" />
   <script defer src="app.js"></script>
 </head>
 
 <body>
-  <!-- Age Gate -->
-  <div class="modal" id="ageModal" role="dialog" aria-modal="true" aria-labelledby="ageTitle">
-    <div class="modal__card">
-      <p class="badge">年齢確認</p>
-      <h2 id="ageTitle">20歳未満の方は閲覧・購入できません</h2>
-      <p class="muted">
-        本サイトは成人向け商品の情報を含みます。年齢確認に同意の上でご利用ください。
-      </p>
-      <div class="row">
-        <button class="btn btn--primary" id="ageYes">私は20歳以上です</button>
-        <a class="btn btn--ghost" id="ageNo" href="https://www.google.com/">退出</a>
-      </div>
-      <p class="tiny muted">
-        ※文言は運用に合わせて調整してください。
-      </p>
-    </div>
-  </div>
-
-  <!-- Top bar -->
   <div class="topbar">
     <div class="container topbar__inner">
-      <span>お問い合わせ：Instagram DM</span>
-      <span class="topbar__right">YUU.K（仮）</span>
+      <span>送料無料 / 入金確認後2日以内発送（目安）</span>
+      <span class="muted">お問い合わせ：Instagram DM</span>
     </div>
   </div>
 
-  <!-- Header -->
   <header class="header" id="top">
     <div class="container header__inner">
-      <a class="logo" href="#top" aria-label="ホームに戻る">
-        <span class="logo__mark">◼︎</span>
+      <a class="logo" href="#top">
+        <span class="logo__mark"></span>
         <span class="logo__text">YUU.K</span>
       </a>
 
-      <nav class="nav" aria-label="メインメニュー">
-        <a href="#features">特徴</a>
+      <nav class="nav">
         <a href="#products">商品</a>
-        <a href="#quality">品質/検査</a>
+        <a href="#ingredients">原材料</a>
         <a href="#faq">FAQ</a>
-        <a href="https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==" class="nav__cta" target="_blank" rel="noopener">Instagramで相談</a>
+        <a class="nav__cta" id="navInsta" target="_blank" rel="noopener">Instagramで相談</a>
       </nav>
 
-      <button class="iconbtn" id="menuBtn" aria-label="メニューを開く" aria-expanded="false">
-        <span class="iconbtn__bar"></span>
-        <span class="iconbtn__bar"></span>
-        <span class="iconbtn__bar"></span>
+      <button class="iconbtn" id="menuBtn" aria-label="メニュー" aria-expanded="false">
+        <span class="iconbtn__bar"></span><span class="iconbtn__bar"></span><span class="iconbtn__bar"></span>
       </button>
     </div>
 
-    <!-- Mobile drawer -->
     <div class="drawer" id="drawer" aria-hidden="true">
       <div class="drawer__inner container">
-        <a href="#features" class="drawer__link">特徴</a>
         <a href="#products" class="drawer__link">商品</a>
-        <a href="#quality" class="drawer__link">品質/検査</a>
+        <a href="#ingredients" class="drawer__link">原材料</a>
         <a href="#faq" class="drawer__link">FAQ</a>
-        <a href="https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==" class="btn btn--primary drawer__cta" target="_blank" rel="noopener">Instagramで相談</a>
+        <a class="btn btn--primary drawer__cta" id="drawerInsta" target="_blank" rel="noopener">Instagramで相談</a>
       </div>
     </div>
   </header>
 
-  <!-- Hero -->
   <main>
     <section class="hero">
       <div class="container hero__grid">
         <div>
-          <p class="badge">CBD LIQUID（仮）</p>
-          <h1>
-            YUU.K（仮）<br />
-            <span class="grad">見やすく、迷わない。</span>
-          </h1>
-          <p class="lead">
-            商品・成分・検査情報は準備中（後で差し替え可能）。<br />
-            まずは「メインページ」をURLで共有できます。
-          </p>
+          <p class="badge">CBD LIQUID</p>
+          <h1>YUU.K<br><span class="grad">見やすく、探しやすく。</span></h1>
+          <p class="lead">商品カテゴリ・FAQ・原材料説明を整理し、スマホでも一覧が見やすい構成にしています。</p>
 
           <div class="row hero__cta">
-            <a class="btn btn--primary" href="#products">商品一覧を見る</a>
-            <a class="btn btn--ghost" href="https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==" target="_blank" rel="noopener">Instagramで相談</a>
+            <a class="btn btn--primary" href="#products">商品一覧へ</a>
+            <a class="btn btn--ghost" id="heroInsta" target="_blank" rel="noopener">Instagramで相談</a>
           </div>
 
           <div class="trust">
-            <div class="trust__item"><span class="trust__dot"></span><span>スマホ最適化</span></div>
-            <div class="trust__item"><span class="trust__dot"></span><span>一覧が見やすい</span></div>
-            <div class="trust__item"><span class="trust__dot"></span><span>差し替え簡単</span></div>
+            <div class="trust__item"><span class="trust__dot"></span><span>送料無料（想定）</span></div>
+            <div class="trust__item"><span class="trust__dot"></span><span>国内配送（想定）</span></div>
+            <div class="trust__item"><span class="trust__dot"></span><span>入金確認後発送（想定）</span></div>
           </div>
         </div>
 
         <div class="hero__card">
           <div class="hero__visual" aria-hidden="true"></div>
           <div class="hero__cardbody">
-            <h3>あとで差し替えできる箇所</h3>
+            <h3>あとで差し替える場所</h3>
             <ul class="check">
-              <li>商品名 / 成分 / 検査情報</li>
-              <li>価格 / 在庫</li>
-              <li>購入導線（EC接続）</li>
+              <li>商品名 / 価格 / 説明</li>
+              <li>カテゴリ / 原材料</li>
+              <li>FAQ / 配送・支払い</li>
               <li>画像</li>
             </ul>
-            <p class="tiny muted">※商品は app.js の配列（今は自動で15個）を編集するだけ</p>
+            <p class="tiny muted">※商品データは app.js の配列を編集するだけ</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Features -->
-    <section class="section" id="features">
-      <div class="container">
-        <div class="section__head">
-          <h2>特徴（テンプレ）</h2>
-          <p class="muted">効能の断定は避け、品質・情報開示・体験（香り等）の説明に寄せる想定。</p>
-        </div>
-
-        <div class="grid3">
-          <article class="card">
-            <h3>商品一覧が見やすい</h3>
-            <p class="muted">画像＋タグ＋価格を1画面で把握できる設計。</p>
-          </article>
-          <article class="card">
-            <h3>商品未定でも公開OK</h3>
-            <p class="muted">後から差し替える前提で作ってあります。</p>
-          </article>
-          <article class="card">
-            <h3>問い合わせはInstagram</h3>
-            <p class="muted">ボタンは全てInstagram DMへ統一。</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- Products -->
     <section class="section section--alt" id="products">
       <div class="container">
         <div class="section__head">
-          <h2>商品一覧（仮）</h2>
-          <p class="muted">現在は試しに15個／9900円統一で表示中。後で差し替え可能。</p>
+          <h2>商品一覧</h2>
+          <p class="muted">カテゴリで絞り込み・検索ができます。スマホは「コンパクト表示」で一画面の表示数を増やせます。</p>
+        </div>
+
+        <!-- 追加：検索 / カテゴリ / 表示密度 -->
+        <div class="controls">
+          <input id="searchInput" class="search" type="search" placeholder="商品名・キーワード検索（例：テルペン / 1ml）" />
+          <div class="controls__row">
+            <div id="catChips" class="chips" aria-label="カテゴリ"></div>
+            <button id="densityBtn" class="btn btn--ghost" type="button">コンパクト表示：ON/OFF</button>
+          </div>
         </div>
 
         <div class="productGrid" id="productGrid" aria-live="polite"></div>
-
-        <div class="note">
-          <p class="tiny">※「購入」は現状Instagram相談。後でShopify/BASE等へリンク差し替えできます。</p>
-        </div>
       </div>
     </section>
 
-    <!-- Quality -->
-    <section class="section" id="quality">
+    <section class="section" id="ingredients">
       <div class="container">
         <div class="section__head">
-          <h2>品質/検査（テンプレ）</h2>
-          <p class="muted">COAなどを後から貼れる枠（準備中）。</p>
+          <h2>原材料の説明（テンプレ）</h2>
+          <p class="muted">内容は後から差し替えできます。断定的な効能表現は避けるのが無難です。</p>
         </div>
 
         <div class="grid2">
           <div class="card">
-            <h3>第三者検査（COA）</h3>
-            <p class="muted">準備ができ次第、PDF/画像リンクを掲載。</p>
-            <button class="btn btn--ghost" disabled>COAを見る（準備中）</button>
+            <h3>配合例（サンプル）</h3>
+            <ul class="check">
+              <li>CBD / CBG / CBN など</li>
+              <li>テルペン（香りの設計）</li>
+              <li>増粘剤・希釈剤：不使用の設計例もあり</li>
+            </ul>
+            <p class="tiny muted">※実際の成分・比率は商品の仕様に合わせて必ず更新してください</p>
           </div>
           <div class="card">
-            <h3>問い合わせ</h3>
-            <p class="muted">Instagram DMへ。</p>
-            <a class="btn btn--primary" href="https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==" target="_blank" rel="noopener">Instagramで相談</a>
+            <h3>配送・支払い（運用例）</h3>
+            <p class="muted">国内配送 / 送料無料 / 銀行振込・PayPay などの運用が一般的です（あなたの運用に合わせて調整）。</p>
           </div>
-        </div>
-
-        <div class="callout">
-          <p><b>注意：</b>掲載文言は法令・運用に合わせて調整してください（効能の断定表現は避けるのが無難）。</p>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
     <section class="section section--alt" id="faq">
       <div class="container">
         <div class="section__head">
           <h2>FAQ</h2>
-          <p class="muted">内容は後で差し替えOK。</p>
+          <p class="muted">よくある質問を自動表示します（app.jsで編集）。</p>
         </div>
 
-        <div class="faq">
-          <details class="faq__item">
-            <summary>商品・成分がまだ未定でも公開していい？</summary>
-            <p class="muted">OK。未定の部分は「準備中」にして、確定後に差し替えます。</p>
-          </details>
-          <details class="faq__item">
-            <summary>問い合わせをInstagramにしたい</summary>
-            <p class="muted">このページはボタンをすべてInstagram DMへ統一しています。</p>
-          </details>
-        </div>
+        <div id="faqList" class="faq"></div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
   <footer class="footer">
-    <div class="container footer__grid">
-      <div>
-        <div class="logo footer__logo">
-          <span class="logo__mark">◼︎</span>
-          <span class="logo__text">YUU.K</span>
-        </div>
-        <p class="tiny muted">
-          ※本サイトはテンプレです。販売開始前に表記・規約・内容の確認/追記を行ってください。
-        </p>
-      </div>
-
-      <div class="footer__links">
-        <a href="#top">上へ戻る</a>
-        <a href="https://www.instagram.com/519yuu.k?igsh=MTIzMm5xeGZzMTk4dQ==" target="_blank" rel="noopener">Instagramで相談</a>
-      </div>
-    </div>
-
     <div class="container footer__bottom tiny muted">
       <span>© <span id="year"></span> YUU.K</span>
-      <span>All rights reserved.</span>
+      <span><a id="footerInsta" target="_blank" rel="noopener">Instagram</a></span>
     </div>
   </footer>
 
